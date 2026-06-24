@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ayx · 信息通廊与稳定入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f7;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 — 杂志感横幅 */
+        .hero {
+            background: linear-gradient(145deg, #0b1120 0%, #1a253f 100%);
+            color: #e2e8f0;
+            padding: 4.5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 25% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 350;
+            letter-spacing: 2px;
+            word-break: keep-all;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0 0.3rem;
+            border-left: 3px solid #7c8cfc;
+            font-weight: 480;
+            color: #d6defa;
+        }
+
+        .hero p {
+            margin-top: 1.2rem;
+            font-size: 1.05rem;
+            opacity: 0.75;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 正文浅色区 */
+        .content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2.8rem 2rem 3.5rem;
+            background: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .section {
+            margin-bottom: 2.8rem;
+            border-bottom: 1px solid #e9edf4;
+            padding-bottom: 2rem;
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.6rem;
+            font-weight: 420;
+            letter-spacing: -0.2px;
+            margin-bottom: 1rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section h2 small {
+            font-size: 0.85rem;
+            font-weight: 350;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0.1rem 0.7rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1.02rem;
+            color: #334155;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .accent-link {
+            color: #3b4fd8;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .accent-link:hover {
+            color: #1f2f9e;
+            border-bottom-color: #3b4fd8;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .feature-card {
+            flex: 1 1 200px;
+            background: #f8fafc;
+            padding: 1.4rem 1.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #7c8cfc;
+            transition: background 0.2s;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 520;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+            letter-spacing: -0.1px;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-bottom: 0;
+        }
+
+        .faq-note {
+            background: #f4f6fb;
+            padding: 1.6rem 2rem;
+            border-radius: 24px;
+            margin-top: 2rem;
+        }
+
+        .faq-note h3 {
+            font-size: 1.2rem;
+            font-weight: 450;
+            margin-bottom: 0.8rem;
+            color: #1e293b;
+        }
+
+        .faq-note p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.6rem 1rem 0.3rem;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-note a {
+            color: #3b4fd8;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 3rem 1.2rem 2.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .content {
+                padding: 1.8rem 1.2rem 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.35rem;
+            }
+
+            .feature-card {
+                flex: 1 1 100%;
+            }
+
+            .faq-note {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>通览 · <span>ayx</span></h1>
+        <p>一个稳定的网络坐标，用于梳理信息路径与页面索引。没有过度包装，只有清晰的入口说明。</p>
+    </header>
+
+    <main class="content">
+
+        <!-- 背景说明 -->
+        <div class="section">
+            <h2>起始坐标 <small>背景</small></h2>
+            <p>在信息检索与资源整理的过程中，一个稳定的索引页面往往比频繁变动的链接更可靠。基于这一前提，<a href="https://one-ayx.com.cn" class="accent-link">ayx</a> 被设计为轻量级的导航节点，不承载冗余的功能，只负责将经过筛选的页面方向集中呈现。</p>
+            <p>这种做法的好处在于：无论后续内容如何调整，只要入口保持不变，使用者就能通过同一地址获得最新的结构指引。域名本身即为锚点。</p>
+        </div>
+
+        <!-- 三段自然介绍：特点 + 场景 + 结构说明 -->
+        <div class="section">
+            <h2>结构特征 <small>三个层面</small></h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>· 扁平索引</h3>
+                    <p>所有页面归集在同一层级下，无需深入子目录即可找到对应资源。降低寻找成本，适合快速扫读。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>· 静态优先</h3>
+                    <p>采用静态页面作为主要形式，不依赖后端数据库，打开即用。对网络环境的要求降至最低，稳定性更高。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>· 主题分化</h3>
+                    <p>每个版块有独立的内容侧重，但整体保持一致的信息分类逻辑。方便使用者按需定位，而非漫无目的地浏览。</p>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem;">这种结构并不追求视觉上的复杂，而是希望通过克制的布局让信息本身成为焦点。ayx 的页面设计始终围绕「可读性」与「可达性」两个基本点。</p>
+        </div>
+
+        <!-- 稳定入口说明 + 使用场景 -->
+        <div class="section">
+            <h2>入口的连续性 <small>为什么需要固定地址</small></h2>
+            <p>许多网站或工具页面会因为维护、改版而变更路径，导致书签失效。而 <a href="https://one-ayx.com.cn" class="accent-link">ayx</a> 自建立之初就明确了「不变应万变」的原则：域名和根路径作为永久入口，所有内容更新都在该框架内完成，不轻易更换地址。</p>
+            <p>对于经常需要查阅特定信息集合的使用者而言，这相当于一个不会消失的桌面书签。无论是整理技术文档、收集兴趣条目，还是作为团队内部的共享起始页，这种固定入口都能减少不必要的重复沟通。</p>
+        </div>
+
+        <!-- FAQ 摘要形式 -->
+        <div class="faq-note">
+            <h3>常见疑问摘要</h3>
+            <p><strong>Q：ayx 是单一页面还是持续更新的站点？</strong><br>
+            A：目前以整合页面为主，但会根据信息量的变化调整目录结构。静态页面便于缓存和分享。</p>
+            <p><strong>Q：是否需要注册或登录才能使用？</strong><br>
+            A：不需要。所有内容均为公开可读，直接访问 <a href="https://one-ayx.com.cn" class="accent-link">ayx</a> 即可。</p>
+            <p><strong>Q：页面内容是否会有重大变化？</strong><br>
+            A：分类逻辑保持稳定，但具体条目会不定期优化。入口地址不变，旧书签依然有效。</p>
+        </div>
+
+        <!-- 页尾访问提示（不含点击/进入等词） -->
+        <div class="footer-note">
+            <p>如需了解当前索引结构，可浏览 <a href="https://one-ayx.com.cn">ayx</a> 获得完整页面列表。</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">—— 以稳定为第一优先级的轻索引 · 2025</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
